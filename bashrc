@@ -10,6 +10,31 @@ fi
 # Update window size after every command
 shopt -s checkwinsize
 
+##### Prompt #####
+function build_prompt {
+    EXITSTATUS="$?"
+
+    PROMPT="\[\e[90m\]\t\[\e[0m\] \[\033[33m\]\w\[\033[00m\]\[\033[01;33m\]\$\[\033[00m\] "
+
+    # Red background if the last command was unhappy
+    if [ "${EXITSTATUS}" -eq 0 ]
+    then
+       PS1="${PROMPT}"
+    else
+       PS1="\[\033[41m\]${PROMPT}"
+    fi
+
+    # Change the titlebar in xterms
+    echo -ne "\033]0;${PWD}\007"
+
+    # Show command in screen
+    echo -ne "\033k\033\0134"
+
+    # Write history after every command
+    history -a
+}
+PROMPT_COMMAND=build_prompt
+
 # Automatically trim long paths in the prompt (requires Bash 4.x)
 PROMPT_DIRTRIM=2
 
@@ -19,9 +44,6 @@ shopt -s histappend
 
 # Save multi-line commands as one command
 shopt -s cmdhist
-
-# Record each line as it gets issued
-PROMPT_COMMAND='history -a'
 
 # Huge history. Doesn't appear to slow things down, so why not?
 HISTSIZE=500000
