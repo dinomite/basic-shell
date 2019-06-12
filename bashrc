@@ -11,10 +11,20 @@ fi
 shopt -s checkwinsize
 
 ##### Prompt #####
+GIT_PS1_SHOWCOLORHINTS=true
+# staged '+', unstaged '*'
+GIT_PS1_SHOWDIRTYSTATE=true
+# '%' untracked files
+GIT_PS1_SHOWUNTRACKEDFILES=true
+# '<' behind, '>' ahead, '<>' diverged, '=' no difference
+GIT_PS1_SHOWUPSTREAM="auto"
+# '$' something is stashed
+GIT_PS1_SHOWSTASHSTATE=true
+
 function build_prompt {
     EXITSTATUS="$?"
 
-    PROMPT="\[\e[90m\]\t\[\e[0m\] \[\033[33m\]\w\[\033[00m\]\[\033[01;33m\]\$\[\033[00m\] "
+    PROMPT="\[\e[90m\]\t\[\e[0m\] \[\033[33m\]\w\[\033[00m\] $(__git_ps1 "(%s)")\[\033[01;33m\]\$\[\033[00m\] "
 
     # Red background if the last command was unhappy
     if [ "${EXITSTATUS}" -eq 0 ]
