@@ -98,7 +98,7 @@ alias mci='mvn clean install'
 alias mcit='mci -DskipTests'
 alias mcp='mvn clean package'
 alias mcpt='mcp -DskipTests'
-alias mt="mvn clean test"
+alias mct="mvn clean test"
 
 ### Gradle
 alias gr="./gradlew"
