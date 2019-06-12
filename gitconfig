@@ -66,3 +66,11 @@
     date = relative
 [push]
     default = current
+
+# check that anything we're getting is complete and sane on a regular basis
+[transfer]
+    fsckobjects = true
+[fetch]
+    fsckobjects = true
+[receive]
+    fsckobjects = true
