@@ -1,0 +1,68 @@
+[user]
+    name = <your name>
+    email = <your GitHub account email>
+[alias]
+    ci = commit
+    ic = commit
+    co = checkout
+    br = branch
+    # Always create annotated tags (which ahve an author & date)
+    tag = tag -a
+    # Show compact status with the current branch information
+    st = status -s -b
+    # Show stashes
+    sl = stash list
+    # Push a locally-created branch and set it to track the remote
+    pb = push -u origin
+    # Pull updates for the current branch
+    pull = pull --rebase --autostash
+    # Show the defined remotes
+    r = remote -v
+    # Show all local branches
+    b = branch -a
+    # Switch to the previous branch
+    prev = checkout @{-1}
+
+    # Basic log format with hash, author, branche pointers, commit message, and changed files
+    l = log --stat --format=format:'"%C(yellow)%h %C(cyan)%an %C(blue)(%cn) %C(cyan)%ad%d\n%C(green)%s\n%b%N"'
+    # This adds the commiter to the basic format above
+    ll = log --stat --format=format:'"%C(yellow)%h %C(cyan)%an <%ae> %ad%d\n\t%C(blue)%cn <%ce> %ci\n%C(green)%s\n%b%N"'
+    # Show a compact history
+    hist = log --pretty=format:'%Cred%h%Creset%C(yellow)%d%Creset (%Cgreen%cr%Creset) %s [%Cblue%an%Creset]' --graph --abbrev-commit --date=relative
+    # Show a log of tags only
+    logtags = log --tags --simplify-by-decoration --format=format:'"%ai %d"'
+
+    # Show commits that the current branch has that master doesn't
+    ahead = log --stat --format=format:'"%C(yellow)%h %C(cyan)%an %C(blue)(%cn) %ad\n%C(green)%s\n%b%N"' origin/master..HEAD
+    # Show commits that master has that the current branch doesn't
+    behind = log --stat --format=format:'"%C(yellow)%h %C(cyan)%an %C(blue)(%cn) %ad\n%C(green)%s\n%b%N"' HEAD..origin/master
+    # Graph branches
+    graph = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%n' --abbrev-commit --date=relative --branches
+
+[blame]
+    date = short
+[branch]
+    # Always rebase when pulling
+    autosetuprebase = always
+    # Always setup remot branch tracking
+    autosetupmerge = always
+[branch "master"]
+    remote = origin
+    merge = refs/heads/master
+[credential]
+    helper = osxkeychain
+[color]
+    branch = auto
+    diff = auto
+    interactive = auto
+    status = auto
+[color "status"]
+    added = green
+    changed = yellow
+    untracked = cyan
+[grep]
+    extendedRegexp = true
+[log]
+    date = relative
+[push]
+    default = current
