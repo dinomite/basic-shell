@@ -156,7 +156,7 @@ alias drmi='docker rmi $(docker images | grep ^classpass | tr -s " " | cut -f 3 
 alias docker-smash='dsa; docker rm $(docker ps -a -q); docker system prune -a; docker volume rm $(docker volume ls -q)'
 
 ### Python
-alias ugh='[ -d .venv ] || virtualenv .venv; . .venv/bin/activate'
+alias ugh='[ -d .venv ] || virtualenv .venv; . .venv/bin/activate; pip install -r requirements.txt'
 
 ### ClassPass deployment
 alias deploy-dev='cp_tools deploy_development update_service'
