@@ -61,7 +61,9 @@ if [ -n "$BREW_PREFIX" ]; then
 fi
 
 ##### Aliases #####
-alias ls="ls -F"
+# Make colored 'ls' output legible
+export LSCOLORS=ExFxCxDxBxegedabagacad
+alias ls="ls -G"
 alias sl="ls"
 alias l="ls"
 alias s="ls"
