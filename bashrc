@@ -1,7 +1,10 @@
 if ((BASH_VERSINFO[0] < 4))
 then
   echo "Your bash version is out of date"
-  echo "Install the latest bash with: brew install bash"
+  echo "Install the latest bash with:"
+  echo "    brew install bash"
+  echo "    sudo bash -c 'echo /usr/local/bin/bash >> /etc/shells'"
+  echo "    chsh -s /usr/local/bin/bash"
 fi
 
 # Update window size after every command
