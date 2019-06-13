@@ -164,7 +164,7 @@ pyenv virtualenvwrapper_lazy
 function ugh {
     NAME=$(basename `pwd`)
 
-    workon "$NAME"
+    workon "$NAME" 2> /dev/null
     if [[ $? -ne 0 ]]; then
         mkvirtualenv "$NAME"
         workon "$NAME"
