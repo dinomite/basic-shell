@@ -7,9 +7,6 @@ then
   echo "    chsh -s /usr/local/bin/bash"
 fi
 
-# Update window size after every command
-shopt -s checkwinsize
-
 ##### Prompt #####
 GIT_PS1_SHOWCOLORHINTS=true
 # staged '+', unstaged '*'
@@ -48,7 +45,10 @@ PROMPT_COMMAND=build_prompt
 # Automatically trim long paths in the prompt (requires Bash 4.x)
 PROMPT_DIRTRIM=2
 
-##### Sane history defaults #####
+# Update window size after every command
+shopt -s checkwinsize
+
+##### History #####
 # Append to the history file, don't overwrite it
 shopt -s histappend
 
@@ -156,6 +156,11 @@ alias drmi='docker rmi $(docker images | grep ^classpass | tr -s " " | cut -f 3 
 alias docker-smash='dsa; docker rm $(docker ps -a -q); docker system prune -a; docker volume rm $(docker volume ls -q)'
 
 ### Python
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+export WORKON_HOME=~/.venvs
+mkdir -p $WORKON_HOME
+eval "$(pyenv init -)"
+pyenv virtualenvwrapper_lazy
 function ugh {
     NAME=$(basename `pwd`)
 
