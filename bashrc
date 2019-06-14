@@ -200,3 +200,5 @@ alias deploy-dev='cp_tools deploy_development update_service'
 alias deploy-prod='cp_tools deploy_production update_service'
 alias info-dev='cp_tools deploy_development service_info -h'
 alias info-prod='cp_tools deploy_production service_info -h'
+
+alias ij="open /Applications/IntelliJ\ IDEA.app" # open ij from a shell -- useful as it brings in all your env variables
