@@ -161,14 +161,32 @@ export WORKON_HOME=~/.venvs
 mkdir -p $WORKON_HOME
 eval "$(pyenv init -)"
 pyenv virtualenvwrapper_lazy
-function ugh {
-    NAME=$(basename `pwd`)
+function enter-the-python {
+        NAME=$(basename `pwd`)
+
+    # If the project specifies a version but it's not installed, install that version
+    pyenv version > /dev/null
+    if [[ $? -ne 0 ]]; then
+        if [[ -f .python-version ]]; then
+            VERSION=$(cat .python-version)
+            echo "Installing Python $VERSION"
+
+            pyenv install "$VERSION"
+        else
+            echo "Don't know what Python version to install (no .python-version file)"
+            echo "See output of `pyenv version` for details"
+        fi
+    fi
 
     workon "$NAME" 2> /dev/null
     if [[ $? -ne 0 ]]; then
+        # If there isn't a virtualenv setup for the project create it
+        echo "Creating virtualenv for $NAME"
+
         mkvirtualenv "$NAME"
         workon "$NAME"
 
+        # And install any necessary dependencies
         if [[ -f "setup.py" ]]; then
             pip install -e .
         elif [[ -f "requirements.txt" ]]; then
