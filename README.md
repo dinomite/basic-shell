@@ -2,7 +2,7 @@
 
 First, install up-to-date Bash via Homewbrew and use it as your shell:
 
-    brew install bash bash-completion autojump
+    brew install bash bash-completion git autojump
     sudo bash -c 'echo /usr/local/bin/bash >> /etc/shells'
     chsh -s /usr/local/bin/bash
 
