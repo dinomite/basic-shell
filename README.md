@@ -12,4 +12,4 @@ Then, install the shell configs from this repository:
     cd basic-shell
     ./install.sh
 
-Start a new terminal to begin using this newly configured bash experience.
+Start a new terminal to begin using this newly configured bash experience.  You'll need to update your name & email at the top of your `~/.gitconfig`.
